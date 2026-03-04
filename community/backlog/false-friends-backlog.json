@@ -213,7 +213,7 @@
     "example": "彼はスマートな着こなしをしている。",
     "id": 24,
     "issued": false,
-    "completed": false
+    "completed": true
   },
   {
     "termA": "テンション (tenshon)",
@@ -221,7 +221,7 @@
     "explanation": "Often means excitement/energy level in casual Japanese. (Set 2)",
     "example": "ライブでテンションが上がった。",
     "id": 25,
-    "issued": false,
+    "issued": true,
     "completed": false
   },
   {
