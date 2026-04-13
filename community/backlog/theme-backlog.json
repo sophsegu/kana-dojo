@@ -378,10 +378,10 @@
     "backgroundColor": "oklch(96.0% 0.008 85.0 / 1)",
     "mainColor": "oklch(20.0% 0.015 270.0 / 1)",
     "secondaryColor": "oklch(45.0% 0.025 260.0 / 1)",
-    "issued": true,
+    "issued": false,
     "completed": false,
-    "completedBy": "hparihar-07",
-    "completedPR": 11327
+    "completedBy": "SwamiSankar",
+    "completedPR": 13042
   },
   {
     "id": "daruma-red",
