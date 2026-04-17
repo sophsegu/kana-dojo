@@ -5,6 +5,7 @@ import {
   Star,
   Sparkles,
   BookOpen,
+  FlaskConical,
   Languages,
   ChevronDown,
   ChevronRight,
@@ -103,6 +104,8 @@ const baseExperimentsSection: NavSection = {
 
 /** Toggle between aurora gradient heading (true) and original heading style (false) */
 const USE_AURORA_SIDEBAR_HEADING = false;
+/** Toggle between new desktop expanded nav badge icons (true) and previous icon style (false) */
+const USE_NEW_SIDEBAR_ICON_BADGES = false;
 
 // ============================================================================
 // Subcomponents
@@ -133,6 +136,8 @@ const NavLink = memo(
   }: NavLinkProps) => {
     const Icon = item.icon;
     const isMain = variant === 'main';
+    const shouldUseDesktopExpandedBadges =
+      USE_NEW_SIDEBAR_ICON_BADGES && !isDesktopCollapsed;
 
     const baseClasses = clsx(
       'flex items-center gap-2 rounded-2xl transition-all duration-250',
@@ -143,9 +148,9 @@ const NavLink = memo(
 
     const inactiveClasses = 'text-(--secondary-color) hover:bg-(--card-color)';
 
-    const renderIcon = (): ReactNode => {
+    const renderIconGlyph = (className?: string): ReactNode => {
       if (item.charIcon) {
-        return item.charIcon;
+        return <span className={className}>{item.charIcon}</span>;
       }
 
       if (Icon) {
@@ -158,12 +163,28 @@ const NavLink = memo(
                 !(isDesktopCollapsed && isMain) &&
                 'motion-safe:animate-bounce',
               item.iconClassName,
+              className,
             )}
           />
         );
       }
 
       return null;
+    };
+
+    const renderIcon = (): ReactNode => {
+      if (!shouldUseDesktopExpandedBadges) {
+        return renderIconGlyph();
+      }
+
+      return (
+        <>
+          <span className='lg:hidden'>{renderIconGlyph()}</span>
+          <span className='hidden h-9 w-9 shrink-0 items-center justify-center rounded-xl border-b-4 border-(--main-color-accent) bg-(--main-color) text-(--background-color) lg:flex'>
+            {renderIconGlyph('text-(--background-color)')}
+          </span>
+        </>
+      );
     };
 
     // Sliding indicator style - indicator is rendered separately and animates between items
@@ -296,6 +317,7 @@ NavLink.displayName = 'NavLink';
 
 type SectionHeaderProps = {
   title: string;
+  icon: LucideIcon;
   collapsible?: boolean;
   isExpanded?: boolean;
   onToggle?: () => void;
@@ -303,6 +325,7 @@ type SectionHeaderProps = {
 
 const SectionHeader = ({
   title,
+  icon: Icon,
   collapsible = false,
   isExpanded = false,
   onToggle,
@@ -311,21 +334,29 @@ const SectionHeader = ({
     return (
       <button
         onClick={onToggle}
-        className='mt-3 mb-1 flex w-full cursor-pointer items-center gap-1 px-4 text-xs text-(--main-color) uppercase opacity-70 transition-opacity hover:opacity-100 max-lg:hidden'
+        className='group mt-2 mb-2 flex w-full cursor-pointer items-center gap-2 px-4 text-base text-(--main-color) uppercase opacity-70 transition-opacity hover:opacity-100 max-lg:hidden'
       >
         {isExpanded ? (
-          <ChevronDown className='h-3 w-3 text-(--secondary-color)' />
+          <ChevronDown className='h-5 w-5 text-(--border-color) transition-colors duration-300 group-hover:text-(--main-color)' />
         ) : (
-          <ChevronRight className='h-3 w-3 text-(--secondary-color)' />
+          <ChevronRight className='h-5 w-5 text-(--border-color) transition-colors duration-300 group-hover:text-(--main-color)' />
         )}
+        <span className='hidden h-7 w-7 shrink-0 items-center justify-center rounded-lg border-b-4 border-(--secondary-color-accent) bg-(--secondary-color) text-(--background-color) transition-colors duration-300 group-hover:border-(--main-color-accent) group-hover:bg-(--main-color) lg:flex'>
+          <Icon className='h-4 w-4 text-(--background-color)' />
+        </span>
         {title}
       </button>
     );
   }
 
   return (
-    <div className='mt-3 w-full px-4 text-xs text-(--main-color) uppercase opacity-70 max-lg:hidden'>
-      {title}
+    <div className='mt-3 w-full px-4 text-sm text-(--main-color) uppercase opacity-70 max-lg:hidden'>
+      <span className='flex items-center gap-1'>
+        <span className='hidden h-7 w-7 shrink-0 items-center justify-center rounded-lg border-b-4 border-(--secondary-color-accent) bg-(--secondary-color) text-(--background-color) transition-colors duration-300 group-hover:border-(--main-color-accent) group-hover:bg-(--main-color) lg:flex'>
+          <Icon className='h-4 w-4 text-(--background-color)' />
+        </span>
+        {title}
+      </span>
     </div>
   );
 };
@@ -675,6 +706,13 @@ const Sidebar = () => {
             <div key={section.title} className='contents'>
               <SectionHeader
                 title={section.title}
+                icon={
+                  section.title === 'Academy'
+                    ? BookOpen
+                    : section.title === 'Tools'
+                      ? Languages
+                      : FlaskConical
+                }
                 collapsible={section.collapsible}
                 isExpanded={isExpanded}
                 onToggle={onToggle}
@@ -682,7 +720,7 @@ const Sidebar = () => {
               {/* Only show items if section is expanded or not collapsible */}
               {(!section.collapsible || isExpanded) &&
                 section.items.length > 0 && (
-                  <div className='flex w-full flex-col gap-0.5 max-lg:hidden'>
+                  <div className='flex w-full flex-col gap-0 max-lg:hidden'>
                     {section.items.map(item => (
                       <NavLink
                         key={item.href}
