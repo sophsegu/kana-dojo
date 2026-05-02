@@ -1122,8 +1122,10 @@
     "backgroundColor": "oklch(22.0% 0.015 250.0 / 1)",
     "mainColor": "oklch(72.0% 0.105 230.0 / 1)",
     "secondaryColor": "oklch(78.0% 0.025 260.0 / 1)",
-    "issued": true,
-    "completed": false
+    "issued": false,
+    "completed": false,
+    "completedBy": "nozomee",
+    "completedPR": 15365
   },
   {
     "id": "sake-glass",
