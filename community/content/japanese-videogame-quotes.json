@@ -77,13 +77,6 @@
     "character": "Giorno Giovanna"
   },
   {
-    "japanese": "世界を救うって、そういうことだろ？",
-    "romaji": "Sekai o sukuu tte, sou iu koto daro?",
-    "english": "Saving the world means doing this, right?",
-    "game": "Persona 5 Strikers",
-    "character": "Joker"
-  },
-  {
     "japanese": "なかなかやるな",
     "romaji": "Nakanaka yaru na",
     "english": "You're pretty good.",
@@ -187,5 +180,12 @@
     "english": "The Sword of Promised Victory.",
     "game": "Fate/stay night [Realta Nua]",
     "character": "Saber"
-  }
+  },
+  {
+    "japanese": "世界を救うって、そういうことだろ？",
+    "romaji": "Sekai o sukuu tte, sou iu koto daro?",
+    "english": "Saving the world means doing this, right?",
+    "game": "Persona 5 Strikers",
+    "character": "Joker"
+  },
 ]
