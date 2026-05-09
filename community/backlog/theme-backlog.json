@@ -313,7 +313,9 @@
     "mainColor": "oklch(65.0% 0.225 30.0 / 1)",
     "secondaryColor": "oklch(90.0% 0.055 95.0 / 1)",
     "issued": false,
-    "completed": false
+    "completed": false,
+    "completedBy": "64johnlee",
+    "completedPR": 16223
   },
   {
     "id": "rice-field-gold",
