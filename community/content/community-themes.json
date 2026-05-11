@@ -430,5 +430,17 @@
     "backgroundColor": "oklch(96.0% 0.018 20.0 / 1)",
     "mainColor": "oklch(70.0% 0.165 350.0 / 1)",
     "secondaryColor": "oklch(78.0% 0.120 135.0 / 1)"
+  },
+  {
+    "id": "sushi-counter",
+    "name": "Sushi Counter",
+    "primaryColor": "oklch(35.0% 0.080 60.0)",
+    "backgroundColor": "oklch(25.0% 0.050 60.0 / 0.95)",
+    "surfaceColor": "oklch(40.0% 0.060 60.0 / 0.8)",
+    "textColor": "oklch(92.0% 0.010 60.0)",
+    "textMutedColor": "oklch(72.0% 0.030 60.0)",
+    "accentColor": "oklch(70.0% 0.180 30.0)",
+    "borderColor": "oklch(50.0% 0.070 60.0 / 0.5)",
+    "secondaryColor": "oklch(60.0% 0.140 80.0)"
   }
 ]
